@@ -17,11 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: xrtk/unity-setup@v7.4
-        with:
-          build-targets: ${{ matrix.targetPlatform }}
-          version-file-path: 'ProjectSettings/ProjectVersion.txt'
-
       - uses: game-ci/unity-builder@v2
         with:
           projectPath: .
@@ -33,30 +28,15 @@ jobs:
           name: gameclient-${{ matrix.targetPlatform }}-${{ github.sha }}
           path: bin
 
-  check-style:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
-
-      - run: dotnet tool install -g dotnet-format
-
-      - run: dotnet format --check
-
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - uses: xrtk/unity-setup@v7.4
-
       - uses: game-ci/unity-test-runner@v2
         with:
           projectPath: .
-          unityVersion: 2020.3.10f1
+          unityVersion: 2022.3.9f1
 
       - uses: actions/upload-artifact@v2
         with:

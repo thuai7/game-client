@@ -17,11 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: xrtk/unity-setup@v7.4
-        with:
-          build-targets: ${{ matrix.targetPlatform }}
-          version-file-path: 'ProjectSettings/ProjectVersion.txt'
-
       - uses: game-ci/unity-builder@v2
         with:
           projectPath: .
