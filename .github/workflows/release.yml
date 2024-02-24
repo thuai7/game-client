@@ -22,6 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+
       - uses: game-ci/unity-builder@v4
         with:
           projectPath: .
@@ -31,7 +36,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: gameclient-${{ matrix.targetPlatform }}-${{ github.sha }}
-          path: bin
+          path: build/
 
   upload-to-release:
     needs:
