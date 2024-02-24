@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneOSX64
+          - StandaloneOSX
           - StandaloneWindows64
           - StandaloneLinux64
 
