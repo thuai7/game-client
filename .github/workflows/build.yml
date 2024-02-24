@@ -1,0 +1,59 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX64
+          - StandaloneWindows64
+          - StandaloneLinux64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: xrtk/unity-setup@v7.4
+
+      - uses: game-ci/unity-builder@v2
+        with:
+          projectPath: .
+          unityVersion: 2020.3.10f1
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gameclient-${{ matrix.targetPlatform }}-${{ github.sha }}
+          path: bin
+
+  check-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - run: dotnet format --verify-no-changes Assets/Scripts
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: xrtk/unity-setup@v7.4
+
+      - uses: game-ci/unity-test-runner@v2
+        with:
+          projectPath: .
+          unityVersion: 2020.3.10f1
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: artifacts/test-results.xml
