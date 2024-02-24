@@ -32,6 +32,7 @@ jobs:
           projectPath: .
           unityVersion: 2022.3.9f1
           targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: GameClient
 
       - uses: actions/upload-artifact@v3
         with:
