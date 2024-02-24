@@ -3,6 +3,9 @@ on:
     types:
       - published
 
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
