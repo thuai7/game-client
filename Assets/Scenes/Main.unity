@@ -165,6 +165,7 @@ BoxCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &100748948
 MeshRenderer:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
