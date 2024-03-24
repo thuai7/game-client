@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Unity.Profiling.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Playables;
