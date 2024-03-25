@@ -74,3 +74,6 @@ crashlytics-build.properties
 ## Repo specific
 # VSCode
 .vscode/
+
+# Logs
+*.log
