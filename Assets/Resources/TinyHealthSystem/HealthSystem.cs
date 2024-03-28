@@ -62,7 +62,11 @@ public class HealthSystem : MonoBehaviour
 	{
 		if (Regenerate)
 			Regen();
-	}
+        /*bool rightarrow = Input.GetKeyDown(KeyCode.RightArrow);
+        bool leftarrow = Input.GetKeyDown(KeyCode.LeftArrow);
+        if (rightarrow) HealDamage(10);
+        if (leftarrow) TakeDamage(10);*/ //test
+    }
 
 	//==============================================================
 	// Regenerate Health & Mana
